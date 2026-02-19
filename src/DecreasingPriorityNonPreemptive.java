@@ -1,18 +1,37 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ShortestJobFirst extends CPUScheduler
+public class DecreasingPriorityNonPreemptive extends CPUScheduler
 {
+
+    final int WAIT = 3;
     @Override
     public void process()
     {
         Collections.sort(this.getRows(), (Object o1, Object o2) -> {
-            if (((Row) o1).getArrivalTime() == ((Row) o2).getArrivalTime())
+            Row row1 = (Row) o1;
+            Row row2 = (Row) o2;
+
+            int wait1 = time -row1.getArrivalTime();
+            int wait2 = time -row2.getArrivalTime();
+
+            int priorityLevel1 = row1.getPriorityLevel();
+            int priorityLevel2 = row2.getPriorityLevel();
+
+            if (wait1 >= WAIT){
+                priorityLevel1++;
+            }
+            if (wait2 >= WAIT){
+                prioritylevel2++;
+            }
+
+            if (priorityLevel1 ==priorityLevel2)
             {
                 return 0;
             }
-            else if (((Row) o1).getArrivalTime() < ((Row) o2).getArrivalTime())
+            else if (priorityLevel1 < priorityLevel2)
             {
                 return -1;
             }
@@ -38,11 +57,11 @@ public class ShortestJobFirst extends CPUScheduler
             }
             
             Collections.sort(availableRows, (Object o1, Object o2) -> {
-                if (((Row) o1).getBurstTime() == ((Row) o2).getBurstTime())
+                if (((Row) o1).getPriorityLevel()== ((Row) o2).getPriorityLevel())
                 {
                     return 0;
                 }
-                else if (((Row) o1).getBurstTime() < ((Row) o2).getBurstTime())
+                else if (((Row) o1).getPriorityLevel() < ((Row) o2).getPriorityLevel())
                 {
                     return -1;
                 }

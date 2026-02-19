@@ -1,4 +1,4 @@
-
+//test
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -82,7 +82,7 @@ public class GUI
         tatResultLabel = new JLabel();
         tatResultLabel.setBounds(215, 450, 180, 25);
         
-        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR"});
+        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR", "LJF", "DPSN"});
         option.setBounds(390, 420, 85, 20);
         
         computeBtn = new JButton("Compute");
@@ -117,6 +117,12 @@ public class GUI
                         }
                         scheduler = new RoundRobin();
                         scheduler.setTimeQuantum(Integer.parseInt(tq)); 
+                        break;
+                    case "LJF":
+                        scheduler = new LongestJobFirst();
+                        break;
+                    case "DPSN":
+                        scheduler = new DecreasingPriorityNonPreemptive();
                         break;
                     default:
                         return;

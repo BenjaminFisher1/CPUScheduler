@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ShortestJobFirst extends CPUScheduler
+public class LongestJobFirst extends CPUScheduler
 {
     @Override
     public void process()
@@ -28,7 +28,7 @@ public class ShortestJobFirst extends CPUScheduler
         while (!rows.isEmpty())
         {
             List<Row> availableRows = new ArrayList();
-            
+
             for (Row row : rows)
             {
                 if (row.getArrivalTime() <= time)
@@ -37,6 +37,7 @@ public class ShortestJobFirst extends CPUScheduler
                 }
             }
             
+       
             Collections.sort(availableRows, (Object o1, Object o2) -> {
                 if (((Row) o1).getBurstTime() == ((Row) o2).getBurstTime())
                 {
@@ -44,11 +45,11 @@ public class ShortestJobFirst extends CPUScheduler
                 }
                 else if (((Row) o1).getBurstTime() < ((Row) o2).getBurstTime())
                 {
-                    return -1;
+                    return 1;  
                 }
                 else
                 {
-                    return 1;
+                    return -1;  
                 }
             });
             
