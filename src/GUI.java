@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.plaf.multi.MultiButtonUI;
 import javax.swing.table.DefaultTableModel;
 
 public class GUI
@@ -82,7 +83,7 @@ public class GUI
         tatResultLabel = new JLabel();
         tatResultLabel.setBounds(215, 450, 180, 25);
         
-        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR", "LJF", "DPSN", "SPSN"});
+        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR", "LJF", "DPSN", "SPSN", "MLFQ"});
         option.setBounds(390, 420, 85, 20);
         
         computeBtn = new JButton("Compute");
@@ -126,6 +127,14 @@ public class GUI
                         break;
                     case "SPSN":
                         scheduler = new SwitchingPriorityNonPreemptive();
+                        break;
+                    case "MLFQ":
+                        String tq2 = JOptionPane.showInputDialog("Time Quantum");
+                        if (tq2 == null) {
+                            return;
+                        }
+                        scheduler = new MultiLevelFeedbackQueue();
+                        scheduler.setTimeQuantum(Integer.parseInt(tq2));
                         break;
                     default:
                         return;
