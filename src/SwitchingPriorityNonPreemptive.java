@@ -86,13 +86,7 @@ public class SwitchingPriorityNonPreemptive extends CPUScheduler
                     break;
                 }
             }
-
-
-            for (Row row : rows){
-                if(row.getPriorityLevel() > 1){
-                    row.setPriorityLevel(row.getPriorityLevel() - 1);
-                }
-            }
+            
         }
         
         for (Row row : this.getRows())
