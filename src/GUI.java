@@ -82,7 +82,7 @@ public class GUI
         tatResultLabel = new JLabel();
         tatResultLabel.setBounds(215, 450, 180, 25);
         
-        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR", "LJF", "DPSN"});
+        option = new JComboBox(new String[]{"FCFS", "SJF", "SRT", "PSN", "PSP", "RR", "LJF", "DPSN", "SPSN"});
         option.setBounds(390, 420, 85, 20);
         
         computeBtn = new JButton("Compute");
@@ -123,6 +123,9 @@ public class GUI
                         break;
                     case "DPSN":
                         scheduler = new DecreasingPriorityNonPreemptive();
+                        break;
+                    case "SPSN":
+                        scheduler = new SwitchingPriorityNonPreemptive();
                         break;
                     default:
                         return;

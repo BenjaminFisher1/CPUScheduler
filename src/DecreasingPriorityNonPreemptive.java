@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/*Write a scheduling algorithm that works like PSN but
+ decreases the priority of any processes by one waiting 
+ in queue for X+ (i.e. 3+) times and increases the priority
+ of a process leaving CPU during the context switch */
 public class DecreasingPriorityNonPreemptive extends CPUScheduler
 {
 
