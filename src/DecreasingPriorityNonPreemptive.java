@@ -11,6 +11,8 @@ public class DecreasingPriorityNonPreemptive extends CPUScheduler
     public void process()
     {
         Collections.sort(this.getRows(), (Object o1, Object o2) -> {
+            List<Row> rows = Utility.deepCopy(this.getRows());
+            int time = rows.get(0).getArrivalTime();
             Row row1 = (Row) o1;
             Row row2 = (Row) o2;
 
@@ -24,7 +26,7 @@ public class DecreasingPriorityNonPreemptive extends CPUScheduler
                 priorityLevel1++;
             }
             if (wait2 >= WAIT){
-                prioritylevel2++;
+                priorityLevel2++;
             }
 
             if (priorityLevel1 ==priorityLevel2)
